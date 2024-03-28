@@ -1,7 +1,7 @@
 import cv2
 
+from typing import Any
 from object_detection import ObjectDetector
-
 
 current_frame = None
 shutdown_flag = False
@@ -22,7 +22,7 @@ def generate_frames():
             yield (b'--frame\r\n'
                    b'Content-Type: image/jpeg\r\n\r\n' + b'\r\n')
             
-def print_inference_stats(results):
+def print_inference_stats(results: Any) -> None:
     speed_info = " ".join(
         f"{k.capitalize()}: {v:.2f}ms;" for k,v in results.speed.items())
     # Padding the end of the message with spaces to overwrite any characters
@@ -33,7 +33,7 @@ def print_inference_stats(results):
     # line without newline.
     print(print_message, end="", flush=True)
             
-def process_video_stream(stream_url: str):
+def process_video_stream(stream_url: str) -> None:
     global current_frame
 
     capture = cv2.VideoCapture(stream_url)

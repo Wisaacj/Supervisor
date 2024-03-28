@@ -44,7 +44,8 @@ def main():
     flask_thread.start()
     video_process_thread.start()
 
-    # Wait for the video process thread to complete execution before exiting the main thread.
+    # Wait for the video process thread to complete execution before 
+    # exiting the main thread.
     video_process_thread.join()
     sys.exit(0)
 
